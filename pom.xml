@@ -17,6 +17,9 @@
     <maven.compiler.source>21</maven.compiler.source>
     <maven.compiler.target>21</maven.compiler.target>
     <maven.compiler.release>21</maven.compiler.release>
+    <suiteXmlFile>src/test/resources/testngRegressionTest.xml</suiteXmlFile>
+    <!-- Additional suite file -->
+    <signupTestSuite>src/test/resources/testngSignupTest.xml</signupTestSuite>
   </properties>
 
   <dependencies>
@@ -53,8 +56,15 @@
           <version>3.8.0</version>
         </plugin>
         <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-surefire-plugin</artifactId>
-          <version>2.22.1</version>
+	        <version>3.5.3</version>
+	        <configuration>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>${suiteXmlFile}</suiteXmlFile> <!-- Use the suite provided via command line -->
+                    </suiteXmlFiles>
+                    
+                </configuration>
         </plugin>
         <plugin>
           <artifactId>maven-jar-plugin</artifactId>
