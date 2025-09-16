@@ -34,9 +34,16 @@ public class Utilities {
     }
 
     //Email Generator
-    public static String generateEmail(){
-        String timeStamp = new SimpleDateFormat("HH_mm_ss_dd-MM-yyyy").format(new Date());
-        String email = "prodtestuser_"+timeStamp+"@mailinator.com";
-        return email;
+    public class emailgenerator{
+
+        private static String generatedEmail;
+
+        public static String generateEmail(){
+            if (generatedEmail == null) {
+                String timeStamp = new SimpleDateFormat("HH_mm_ss_dd-MM-yyyy").format(new Date());
+                generatedEmail = "prodtestuser_"+timeStamp+"@mailinator.com";
+            }
+            return generatedEmail;
+        }
     }
 }
