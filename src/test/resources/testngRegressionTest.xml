@@ -8,6 +8,7 @@
   <parameter name="BrowserName" value="Chrome"></parameter>
     <classes>
       <class name="com.auth0.qa.testcases.SignupTest"/>
+      <class name="com.auth0.qa.testcases.LoginTest"/>
     </classes>
   </test>
 </suite>

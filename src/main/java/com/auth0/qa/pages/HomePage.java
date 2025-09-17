@@ -10,11 +10,13 @@ public class HomePage {
 	private Page page;
 	//Define Locator
 	private Locator signupButtonLocator;
+	private Locator loginButtonLocator;
 	
 	//Assign Element
 	public HomePage(Page page) {
 		this.page = page;
 		signupButtonLocator = page.locator("xpath=//nav[@aria-label='Desktop nav']//span[text()='Sign up']");
+		loginButtonLocator = page.locator("xpath=//a[text()='Login']");
 	}
 	
 	//Action
@@ -25,5 +27,9 @@ public class HomePage {
 	
 	public void assertPageLoad() {
 		PlaywrightAssertions.assertThat(page).hasTitle(homepageTitle);
+	}
+
+	public void clickOnLogin() {
+		loginButtonLocator.click();
 	}
 }

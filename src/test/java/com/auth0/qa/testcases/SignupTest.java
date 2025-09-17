@@ -55,6 +55,6 @@ public class SignupTest extends Base {
 			
 		//Dash-board Page	
 			DashboardPage dashboardPage = new DashboardPage(page);
-			dashboardPage.assertDashboardHeaderIsVisible(timeout());
+			dashboardPage.assertGettingStartedHeaderIsVisible(timeout());;
 	}
 }
