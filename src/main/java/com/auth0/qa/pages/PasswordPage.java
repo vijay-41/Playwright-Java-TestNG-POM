@@ -6,6 +6,7 @@ import com.microsoft.playwright.assertions.PlaywrightAssertions;
 
 public class PasswordPage {
 public String passwordPageTitle = "Create a password to sign up | Auth0";
+public String passwordPageTitleLogin = "Enter your password to log in | Auth0";
 	private Page page;
 	
 	//Define Locator
@@ -31,5 +32,9 @@ public String passwordPageTitle = "Create a password to sign up | Auth0";
 	
 	public void assertPageLoad() {
 		PlaywrightAssertions.assertThat(page).hasTitle(passwordPageTitle);
+	}
+
+	public void assertLoginPasswordPageLoad() {
+		PlaywrightAssertions.assertThat(page).hasTitle(passwordPageTitleLogin);
 	}
 }

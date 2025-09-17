@@ -8,20 +8,15 @@ import com.microsoft.playwright.assertions.PlaywrightAssertions;
 public class DashboardPage {
     
     //Define Locator
-	private Locator headingLocator;
+	private Locator gettingStartedLocator;
 	
 	//Assign Element
 	public DashboardPage(Page page) {
-		headingLocator = page.locator("xpath=//h3[text()='Create a Sample App']");
-		
+		gettingStartedLocator = page.getByTitle("Getting Started");
 	}
 	
 	//Action
-	public Locator checkHeading() {
-		return headingLocator;
-	}
-	
-	public void assertDashboardHeaderIsVisible(int timeout) {
-		PlaywrightAssertions.assertThat(headingLocator).isVisible(new LocatorAssertions.IsVisibleOptions().setTimeout(timeout));
+	public void assertGettingStartedHeaderIsVisible(int timeout) {
+		PlaywrightAssertions.assertThat(gettingStartedLocator).isVisible(new LocatorAssertions.IsVisibleOptions().setTimeout(timeout));
 	}
 }
