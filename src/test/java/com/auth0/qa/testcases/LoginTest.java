@@ -26,7 +26,7 @@ public class LoginTest extends Base{
 	public void tearDown(Method method) {
 		close(method);
 	}
-	@Test
+	@Test(dependsOnMethods = "verifyNewUserSignup")
     public void verifyNewUserLogin() {
         //Home page
         HomePage homePage = new HomePage(page);
