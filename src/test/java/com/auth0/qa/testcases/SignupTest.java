@@ -28,7 +28,7 @@ public class SignupTest extends Base {
 		close(method);
 	}
 	
-	@Test
+	@Test(priority = 1)
 	public void verifyNewUserSignup() {
 		// Home page
 			HomePage homePage = new HomePage(page);
@@ -56,5 +56,26 @@ public class SignupTest extends Base {
 		//Dash-board Page	
 			DashboardPage dashboardPage = new DashboardPage(page);
 			dashboardPage.assertGettingStartedHeaderIsVisible(timeout());;
+	}
+
+	@Test(priority = 2, dependsOnMethods = "verifyNewUserSignup")
+	public void verifyExistingUserSignupAttempt(){
+		// Home page
+			HomePage homePage = new HomePage(page);
+			homePage.assertPageLoad();
+			homePage.clickOnSignup();
+		
+		// Sign-up Page	
+			SignUpPage signUpPage = new SignUpPage(page);
+			signUpPage.assertPageLoad();
+			signUpPage.enterEmailId(Utilities.emailgenerator.generateEmail());
+			signUpPage.clickOnContinue();
+		
+		// Password Page	
+			PasswordPage passwordPage = new PasswordPage(page);
+			passwordPage.assertPageLoad();
+			passwordPage.enterPassword(defaultPassword());
+			passwordPage.clickOnContinue();
+			passwordPage.assertDuplicateUserErrorMessage();
 	}
 }
