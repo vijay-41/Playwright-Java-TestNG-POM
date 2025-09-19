@@ -6,7 +6,7 @@ import com.microsoft.playwright.assertions.PlaywrightAssertions;
 
 public class HomePage {
     
-    public String homepageTitle = "Auth0: Secure access for everyone. But not just anyone.";
+    public String homepageTitle = "Secure AI Agent & User Authentication | Auth0";
 	private Page page;
 	//Define Locator
 	private Locator signupButtonLocator;

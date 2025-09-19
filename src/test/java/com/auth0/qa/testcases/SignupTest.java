@@ -38,7 +38,7 @@ public class SignupTest extends Base {
 		// Sign-up Page	
 			SignUpPage signUpPage = new SignUpPage(page);
 			signUpPage.assertPageLoad();
-			signUpPage.enterEmailId(Utilities.emailgenerator.generateEmail());
+			signUpPage.enterEmailId(Utilities.emailgenerator.getEmail());
 			signUpPage.clickOnContinue();
 			
 		// Password Page	
@@ -68,7 +68,7 @@ public class SignupTest extends Base {
 		// Sign-up Page	
 			SignUpPage signUpPage = new SignUpPage(page);
 			signUpPage.assertPageLoad();
-			signUpPage.enterEmailId(Utilities.emailgenerator.generateEmail());
+			signUpPage.enterEmailId(Utilities.emailgenerator.getEmail());
 			signUpPage.clickOnContinue();
 		
 		// Password Page	

@@ -38,11 +38,17 @@ public class Utilities {
 
         private static String generatedEmail;
 
+         // Returns the same email for the entire test suite (until JVM ends)
+        public static String getEmail(){
+            if (generatedEmail == null){
+                generatedEmail = generateEmail();// first time, generate
+            }
+            return generatedEmail;
+        }
+
         public static String generateEmail(){
-            if (generatedEmail == null) {
                 String timeStamp = new SimpleDateFormat("HH_mm_ss_dd-MM-yyyy").format(new Date());
                 generatedEmail = "prodtestuser_"+timeStamp+"@mailinator.com";
-            }
             return generatedEmail;
         }
     }

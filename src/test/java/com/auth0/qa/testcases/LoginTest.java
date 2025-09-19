@@ -26,9 +26,32 @@ public class LoginTest extends Base{
 	public void tearDown(Method method) {
 		close(method);
 	}
-	@Test(dependsOnMethods = "verifyNewUserSignup")
+	@Test(priority = 1,dependsOnMethods = "verifyNewUserSignup")
     public void verifyNewUserLogin() {
         //Home page
+        HomePage homePage = new HomePage(page);
+        homePage.assertPageLoad();
+        homePage.clickOnLogin();
+
+		//Login page
+		LoginPage loginPage = new LoginPage(page);
+		loginPage.assertPageLoad();
+		loginPage.enterEmailId(Utilities.emailgenerator.getEmail());
+		loginPage.clickOnContinue();
+
+		//Password page
+		PasswordPage passwordPage = new PasswordPage(page);
+		passwordPage.assertLoginPasswordPageLoad();
+		passwordPage.enterPassword(defaultPassword());
+		passwordPage.clickOnContinue();
+
+		//Dash-board Page
+		DashboardPage dashboardPage = new DashboardPage(page);
+		dashboardPage.assertGettingStartedHeaderIsVisible(timeout());
+    }
+	@Test(priority = 2)
+	public void verifyInvalidUserUserLoginAttempt(){
+		//Home page
         HomePage homePage = new HomePage(page);
         homePage.assertPageLoad();
         homePage.clickOnLogin();
@@ -44,9 +67,6 @@ public class LoginTest extends Base{
 		passwordPage.assertLoginPasswordPageLoad();
 		passwordPage.enterPassword(defaultPassword());
 		passwordPage.clickOnContinue();
-
-		//Dash-board Page
-		DashboardPage dashboardPage = new DashboardPage(page);
-		dashboardPage.assertGettingStartedHeaderIsVisible(timeout());
-    }
+		passwordPage.assertInvalidUserUserErrorMessage();
+	}
 }
