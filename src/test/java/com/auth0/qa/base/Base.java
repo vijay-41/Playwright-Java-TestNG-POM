@@ -45,7 +45,6 @@ public class Base {
         }
 
         public void initializeBrowserAndOpenHomepage(String browserName){
-            Utilities.cleanAndCreateTracingFolder();
             if(browserName == null || browserName.isEmpty()){
                 browserName = propConfig.getProperty("browser", "chrome");//Get the value of browser from the Config.properties file, If it's missing or not defined, then use "chrome" as the default.
             }
