@@ -1,12 +1,20 @@
 package com.auth0.qa.listeners;
 
+import org.testng.IExecutionListener;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
-public class MyListeners implements ITestListener{
+import com.auth0.qa.utlis.Utilities;
+
+public class MyListeners implements ITestListener, IExecutionListener{
         String testName;
 	
+	 @Override
+    public void onExecutionStart() {
+        Utilities.cleanAndCreateTracingFolder();
+    }
+
 	@Override
 	public void onStart(ITestContext context) {
 		System.out.println("Execution of Auth0 Automation has started");

@@ -26,6 +26,7 @@ public class LoginTest extends Base{
 	public void tearDown(Method method) {
 		close(method);
 	}
+	
 	@Test(priority = 1,dependsOnMethods = "verifyNewUserSignup")
     public void verifyNewUserLogin() {
         //Home page
@@ -49,8 +50,9 @@ public class LoginTest extends Base{
 		DashboardPage dashboardPage = new DashboardPage(page);
 		dashboardPage.assertGettingStartedHeaderIsVisible(timeout());
     }
+
 	@Test(priority = 2)
-	public void verifyInvalidUserUserLoginAttempt(){
+	public void verifyInvalidUserLoginAttempt(){
 		//Home page
         HomePage homePage = new HomePage(page);
         homePage.assertPageLoad();
