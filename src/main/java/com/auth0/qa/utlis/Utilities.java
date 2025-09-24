@@ -18,6 +18,9 @@ public class Utilities {
     //tracingFiles file path
     public static final String tracingFolderPath = System.getProperty("user.dir")+File.separator+"tracingFiles";
 
+    //reports file path
+    public static final String reportsPath = System.getProperty("user.dir")+File.separator+"reports";
+
     //Cleaning Tracing Folder
     public static void cleanAndCreateTracingFolder(){
         Path tracePath = Paths.get(tracingFolderPath);
@@ -32,18 +35,42 @@ public class Utilities {
             e.printStackTrace();
         }
     }
+    //Cleaning Reports Folder
+    public static void cleanAndCreateReportsFolder(){
+        Path reporPath = Paths.get(reportsPath);
+        try {
+            if (Files.exists(reporPath)) {
+                Files.walk(reporPath).sorted(Comparator.reverseOrder()).map(Path::toFile).forEach(File::delete);   
+            }
+            if (!Files.exists(reporPath)) {
+                Files.createDirectories(reporPath);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     //Email Generator
     public class emailgenerator{
+
+        private static final ThreadLocal<String> threadLocalEmail = ThreadLocal.withInitial(() -> {
+            String timeStamp = new SimpleDateFormat("HH_mm_ss_SSS_ddMMyyyy").format(new Date());
+            String threadName = Thread.currentThread().getName().replaceAll("\\s+", "_");
+            return "prodtestuser_" + timeStamp + "_" + threadName + "@mailinator.com";
+        });
 
         private static String generatedEmail;
 
          // Returns the same email for the entire test suite (until JVM ends)
         public static String getEmail(){
+
+            return threadLocalEmail.get();
+            /* 
             if (generatedEmail == null){
                 generatedEmail = generateEmail();// first time, generate
             }
             return generatedEmail;
+            */
         }
 
         public static String generateEmail(){
